@@ -1,0 +1,21 @@
+{
+  "name": "invoiceharbor",
+  "version": "0.1.0",
+  "private": true,
+  "description": "InvoiceHarbor — AI-native accounts receivable coordination and invoice intelligence (demo build).",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "optionalDependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.600.0",
+    "@aws-sdk/client-s3": "^3.600.0",
+    "@aws-sdk/client-textract": "^3.600.0",
+    "pg": "^8.11.0"
+  }
+}

@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InvoiceHarbor — Receivables Intelligence</title>
+  <meta name="description" content="InvoiceHarbor helps finance teams track outstanding invoices, understand disputes, prioritize collections, and prepare consistent follow-ups — with recorded data as the source of truth." />
+  <link rel="icon" href="/img/mark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/app.css" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+  <header class="site-nav">
+    <div class="wrap">
+      <a class="brand" href="/"><img src="/img/mark.svg" width="28" height="28" alt="" /> InvoiceHarbor</a>
+      <nav id="siteNav">
+        <a href="#workflow">How it works</a><a href="#platform">Platform</a><a href="#safeguards">Safeguards</a><a href="#use-cases">Use cases</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+      </nav>
+      <a class="sbtn ghost navcta" href="/app">Explore the workspace</a>
+      <a class="sbtn primary navcta" href="#demo">Request a demo</a>
+      <button class="menu-btn" aria-label="Open menu" id="menuBtn">☰</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Accounts receivable intelligence</span>
+        <h1>Every open invoice, <em>understood.</em><br />Every follow-up, approved.</h1>
+        <p class="lead">InvoiceHarbor reads your invoices, classifies every receivable from verified records, untangles disputes, and drafts the right reminder — then waits for your team to approve it.</p>
+        <div class="ctas"><a class="sbtn primary" href="#demo">Request a demo</a><a class="sbtn ghost" href="#workflow">See the workflow →</a></div>
+        <div class="assure"><span>Recorded data is the source of truth</span><span>Nothing sent without approval</span><span>Never moves money</span></div>
+      </div>
+      <div class="mock" aria-hidden="true">
+        <div class="mock-top"><i></i><i></i><i></i></div>
+        <div class="mock-body">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><b>Follow-up queue</b><span class="muted small">Records as of Oct 18</span></div>
+          <div class="mock-row"><div><b>INV-2026-1010</b><div class="small muted">Marlow Foodservice · missed promise</div></div><span class="badge overdue">Overdue · 95d</span><b class="num">$14,019.80</b></div>
+          <div class="mock-row"><div><b>INV-2026-1007</b><div class="small muted">Cedar &amp; Pike · quantity shortfall</div></div><span class="badge disputed">Disputed · 38d</span><b class="num">$10,158.20</b></div>
+          <div class="mock-row"><div><b>INV-2026-1012</b><div class="small muted">Solenne Media · remittance only</div></div><span class="badge requires_review">Requires review</span><b class="num">$5,400.00</b></div>
+          <div class="draft"><div class="k">Draft · awaiting approval</div><div style="margin-top:4px">“…while we resolve the quantity question, would you be able to release the undisputed portion of <b>$9,257.20</b>?”</div><div class="small muted" style="margin-top:6px">✓ All amounts match recorded figures · Sensitive: requires acknowledgement</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="principles">
+      <div><b>Verified-only</b><span>Balances use bank-confirmed payments, never customer claims</span></div>
+      <div><b>0 auto-sends</b><span>Every collection message has a named human approver</span></div>
+      <div><b>Explainable</b><span>Each priority score shows every factor and its points</span></div>
+      <div><b>Separated</b><span>CRM and marketing data never mix with financial records</span></div>
+    </div>
+  </div>
+
+  <section class="block" id="workflow">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Interactive workflow</span><h2>Follow one disputed invoice from inbox to approved reminder</h2><p>Step through how InvoiceHarbor handles a real-world case: a distributor invoice that is 38 days overdue and partially disputed.</p></div>
+      <div class="wf">
+        <div class="wf-steps" id="wfSteps"></div>
+        <div class="wf-panel" id="wfPanel" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="platform">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Platform</span><h2>Six AI capabilities, one disciplined receivables workflow</h2><p>AI does the reading, summarising and drafting. Your recorded invoice and payment data decides every number.</p></div>
+      <div class="features">
+        <div class="feature"><div class="ico">01</div><h3>Invoice data extraction</h3><p>Pull invoice numbers, customers, dates, terms, amounts and line items from supported documents — with confidence scores and arithmetic checks before anything becomes a record.</p><div class="src">Amazon S3 · Amazon Textract</div></div>
+        <div class="feature"><div class="ico">02</div><h3>Receivables classification</h3><p>Every invoice is classified as current, overdue, disputed, awaiting information, or requiring review — with the reasons written out, using verified invoice and payment records.</p><div class="src">Rules engine · PostgreSQL</div></div>
+        <div class="feature"><div class="ico">03</div><h3>Dispute intelligence</h3><p>Summarise long correspondence threads, surface unanswered questions, list missing evidence, and recommend next steps for each dispute.</p><div class="src">Amazon Bedrock</div></div>
+        <div class="feature"><div class="ico">04</div><h3>Follow-up prioritization</h3><p>Rank the queue using transparent factors — days overdue, balance, dispute status, broken promises, and your own business rules. Adjust weights, see the queue re-rank.</p><div class="src">Configurable rules</div></div>
+        <div class="feature"><div class="ico">05</div><h3>AI reminder drafting</h3><p>Professional, context-aware reminders that acknowledge disputes, thank partial payers, and escalate tone appropriately — validated against recorded amounts and held for approval.</p><div class="src">Amazon Bedrock · human approval</div></div>
+        <div class="feature"><div class="ico">06</div><h3>Receivables reporting</h3><p>Outstanding balances, aging, dispute patterns and follow-up activity — with an executive summary where every figure is computed, not generated.</p><div class="src">Scheduled AWS Lambda</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block guard" id="safeguards">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow" style="color:var(--teal-300)">Financial safeguards</span><h2>AI assistance with accounting discipline</h2><p>InvoiceHarbor is designed so that a model can never be the reason a balance is wrong or a message is sent.</p></div>
+      <div class="guard-grid">
+        <div><b>Recorded data is authoritative</b><span>Balances are invoice totals minus verified payments. Models never produce or adjust figures.</span></div>
+        <div><b>No paid status without proof</b><span>An invoice moves to paid only when bank-verified payments cover it. Remittance advice stays “unconfirmed”.</span></div>
+        <div><b>No payment initiation</b><span>The platform has no capability to move money, charge cards or initiate transfers.</span></div>
+        <div><b>Approval before any message</b><span>Drafts need a named approver; sensitive collection messages need explicit acknowledgement. Staff send from their own mailbox.</span></div>
+        <div><b>Amount validation</b><span>Any dollar figure in a draft that doesn’t match a recorded figure blocks approval automatically.</span></div>
+        <div><b>Full audit trail</b><span>Every classification, draft, edit, approval and verification is logged with who and when.</span></div>
+      </div>
+      <div class="vs">
+        <div class="v"><div class="k">✓ Verified payment information</div>Confirmed against bank records, with reviewer and bank reference. This is what reduces a balance.</div>
+        <div class="e"><div class="k">Estimated payment timing</div>A labelled projection from the customer’s verified payment history. Shown separately, never presented as fact.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="use-cases">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Use cases</span><h2>Built for teams that invoice in volume and in detail</h2></div>
+      <div class="tabs" role="tablist"><button class="on" data-uc="agency" role="tab" aria-selected="true">Agencies</button><button data-uc="distributor" role="tab" aria-selected="false">Distributors</button></div>
+      <div id="ucPanel"></div>
+    </div>
+  </section>
+
+  <section class="block alt" id="architecture">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Architecture</span><h2>Enterprise-grade on AWS</h2><p>Tenant-isolated, encrypted at rest and in transit, and designed for least-privilege access.</p></div>
+      <div class="arch">
+        <div><b>Amazon S3</b><small>Invoice documents, KMS-encrypted, private per tenant</small></div>
+        <div><b>Amazon Textract</b><small>AnalyzeExpense for supported invoice extraction</small></div>
+        <div><b>Amazon Bedrock</b><small>Dispute summaries and reminder drafting, no training on your data</small></div>
+        <div><b>PostgreSQL</b><small>Invoices, payments, disputes, workflow and audit records</small></div>
+        <div><b>AWS Lambda</b><small>Scheduled aging, cadence and dispute-SLA tasks</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="pricing">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">Pricing</span><h2>Priced by receivables volume, not by seat</h2><p>Illustrative pricing for this demonstration.</p></div>
+      <div class="billing"><span>Monthly</span><button class="switch" role="switch" aria-checked="true" id="billingSwitch" aria-label="Annual billing"></button><span>Annual <span class="badge current" style="margin-left:4px">save 15%</span></span></div>
+      <div class="plans">
+        <div class="plan"><h3>Essentials</h3><div class="price" data-m="690">$690<small> /mo</small></div><div class="for">Up to 500 open invoices · 5 users</div><ul><li>Invoice register, aging &amp; customers</li><li>Receivables classification</li><li>Follow-up queue with transparent scoring</li><li>AI reminder drafts with approval</li><li>Standard reports</li></ul><a class="sbtn outline" href="#demo">Request a demo</a></div>
+        <div class="plan featured"><h3>Growth</h3><div class="price" data-m="1650">$1,650<small> /mo</small></div><div class="for">Up to 3,000 open invoices · 20 users</div><ul><li>Everything in Essentials</li><li>Textract invoice extraction (2,000 pages/mo)</li><li>Dispute intelligence</li><li>Payment reconciliation &amp; bank feed matching</li><li>Custom prioritization rules</li><li>HubSpot onboarding sync (non-financial)</li></ul><a class="sbtn dark" href="#demo">Request a demo</a></div>
+        <div class="plan"><h3>Enterprise</h3><div class="price">Custom</div><div class="for">Multi-entity · unlimited users</div><ul><li>Everything in Growth</li><li>SSO / SAML &amp; SCIM</li><li>Dedicated AWS region &amp; VPC options</li><li>ERP integrations</li><li>Approval chains &amp; policy templates</li><li>Premium support &amp; SLA</li></ul><a class="sbtn outline" href="#demo">Talk to sales</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="demo">
+    <div class="wrap demo-wrap">
+      <div class="sec-head" style="margin:0"><span class="eyebrow">Request a demo</span><h2>See InvoiceHarbor on a receivables ledger like yours</h2><p>We’ll walk through extraction, dispute intelligence and the approval workflow using fictional sample data — no need to share financial records.</p>
+        <ul style="color:var(--ink-2);padding-left:18px;margin-top:20px"><li>30-minute guided session</li><li>Tailored to agency or distributor workflows</li><li>Security and data-handling review on request</li></ul>
+        <p class="small muted" style="margin-top:24px">Prefer to explore first? <a href="/app">Open the demo workspace</a> — it runs entirely on fictional data.</p></div>
+      <form class="demo" id="demoForm" novalidate>
+        <div class="two"><div><label for="d-name">Full name *</label><input id="d-name" name="name" required autocomplete="name" /></div><div><label for="d-email">Work email *</label><input id="d-email" name="email" type="email" required autocomplete="email" /></div></div>
+        <div class="two"><div><label for="d-company">Company *</label><input id="d-company" name="company" required autocomplete="organization" /></div><div><label for="d-role">Role</label><input id="d-role" name="role" autocomplete="organization-title" /></div></div>
+        <div class="two"><div><label for="d-seg">Business type</label><select id="d-seg" name="segment"><option value="">Select…</option><option>Agency</option><option>Distributor</option><option>Wholesale</option><option>Professional services</option><option>Other</option></select></div>
+          <div><label for="d-vol">Open invoices / month</label><select id="d-vol" name="invoiceVolume"><option value="">Select…</option><option>Under 250</option><option>250–1,000</option><option>1,000–5,000</option><option>5,000+</option></select></div></div>
+        <label for="d-msg">What would you like to see?</label><textarea id="d-msg" name="message" placeholder="Please don’t include invoice or customer financial details."></textarea>
+        <label class="chk"><input type="checkbox" name="consent" /> <span>Send me occasional product updates. (Optional — your demo request is handled either way.)</span></label>
+        <button class="sbtn dark" type="submit" style="width:100%;justify-content:center">Request demo</button>
+        <p class="small muted" style="margin:10px 0 0">Demo requests are stored in our sales CRM, separately from any customer financial data.</p>
+        <div id="formMsg" role="status"></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="block" id="faq">
+    <div class="wrap">
+      <div class="sec-head"><span class="eyebrow">FAQ</span><h2>Questions finance teams ask us</h2></div>
+      <div class="faq">
+        <details><summary>Can InvoiceHarbor send reminders automatically?</summary><p>No. Every reminder is a draft until a named team member approves it, and sensitive collection messages (dispute-related, firm or escalated) need an extra acknowledgement. Even after approval, your staff send the message from their own mailbox and record it as sent. Automatic sending is locked off.</p></details>
+        <details><summary>Will the AI ever change a balance or mark an invoice paid?</summary><p>No. Balances are always computed as recorded invoice totals minus verified payments. An invoice becomes paid only when bank-verified payments cover it. Remittance advice or a customer’s “we paid” email is recorded as an unconfirmed claim and does not reduce the balance.</p></details>
+        <details><summary>How is the AI kept from inventing numbers in reminders?</summary><p>Each draft is generated from a list of permitted figures tied to their source records. Before approval, every dollar amount in the message is checked against that list; anything that doesn’t match blocks approval.</p></details>
+        <details><summary>What’s the difference between estimated and verified payment timing?</summary><p>Verified payment information comes from confirmed bank records. Estimated timing is a projection based on a customer’s verified history, always labelled as an estimate and shown separately. Disputed invoices get no estimate at all.</p></details>
+        <details><summary>Which invoice formats can you extract?</summary><p>Supported PDF and image invoices processed by Amazon Textract AnalyzeExpense. Extracted fields carry confidence scores and are checked arithmetically; low-confidence or inconsistent results are routed to human review instead of becoming records automatically.</p></details>
+        <details><summary>Do you use our data to train AI models?</summary><p>No. Amazon Bedrock does not use customer prompts or outputs to train foundation models, and InvoiceHarbor does not either. Documents and records stay encrypted in your tenant.</p></details>
+        <details><summary>How does the HubSpot integration work?</summary><p>HubSpot manages prospects, demo bookings, onboarding and the sales pipeline. Financial records stay in InvoiceHarbor. Any synchronization is limited to non-financial fields and only when an authorized integration explicitly requires it.</p></details>
+        <details><summary>Does InvoiceHarbor initiate payments or store card details?</summary><p>No. InvoiceHarbor coordinates receivables; it has no capability to initiate payments, move money, or store payment credentials.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site"><div class="wrap"><div><b style="color:#fff">InvoiceHarbor</b> · Receivables intelligence for finance teams<br /><span class="small">Demonstration site. All companies, invoices and figures shown are fictional.</span></div><div><a href="/app">Workspace</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="#demo">Contact</a></div></div></footer>
+  <script src="/js/site.js" type="module"></script>
+</body>
+</html>

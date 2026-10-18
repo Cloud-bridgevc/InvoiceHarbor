@@ -1,0 +1,91 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: InvoiceHarbor core infrastructure (reference template, not deployed by the demo)
+
+Parameters:
+  BedrockModelId:
+    Type: String
+    Description: Bedrock model or inference profile ID used for dispute summaries and reminder drafts
+  DatabaseSecretArn:
+    Type: String
+    Description: Secrets Manager ARN holding PostgreSQL credentials
+
+Resources:
+  DocumentsKey:
+    Type: AWS::KMS::Key
+    Properties:
+      EnableKeyRotation: true
+      KeyPolicy:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: { AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root' }
+            Action: 'kms:*'
+            Resource: '*'
+
+  InvoiceDocumentsBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: { SSEAlgorithm: aws:kms, KMSMasterKeyID: !Ref DocumentsKey }
+      PublicAccessBlockConfiguration: { BlockPublicAcls: true, BlockPublicPolicy: true, IgnorePublicAcls: true, RestrictPublicBuckets: true }
+      VersioningConfiguration: { Status: Enabled }
+      ObjectLockEnabled: true
+
+  ScheduledTaskRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement: [{ Effect: Allow, Principal: { Service: lambda.amazonaws.com }, Action: sts:AssumeRole }]
+      ManagedPolicyArns: [arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole]
+      Policies:
+        - PolicyName: least-privilege
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - { Effect: Allow, Action: [secretsmanager:GetSecretValue], Resource: !Ref DatabaseSecretArn }
+              - { Effect: Allow, Action: [s3:PutObject], Resource: !Sub '${InvoiceDocumentsBucket.Arn}/reports/*' }
+              # Deliberately no SES / SNS / payment permissions: scheduled tasks cannot send messages or move money.
+
+  NightlyAgingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs20.x
+      Handler: lambda/scheduled.nightlyAging
+      Role: !GetAtt ScheduledTaskRole.Arn
+      Timeout: 300
+      Environment: { Variables: { DB_SECRET_ARN: !Ref DatabaseSecretArn } }
+      Events:
+        Nightly: { Type: ScheduleV2, Properties: { ScheduleExpression: 'cron(0 2 * * ? *)' } }
+
+  PromiseMonitorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs20.x
+      Handler: lambda/scheduled.promiseMonitor
+      Role: !GetAtt ScheduledTaskRole.Arn
+      Events:
+        Weekdays: { Type: ScheduleV2, Properties: { ScheduleExpression: 'cron(0 7 ? * MON-FRI *)' } }
+
+  DisputeSlaFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs20.x
+      Handler: lambda/scheduled.disputeSla
+      Role: !GetAtt ScheduledTaskRole.Arn
+      Events:
+        Weekdays: { Type: ScheduleV2, Properties: { ScheduleExpression: 'cron(0 8 ? * MON-FRI *)' } }
+
+  WeeklyReportFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: nodejs20.x
+      Handler: lambda/scheduled.weeklyReport
+      Role: !GetAtt ScheduledTaskRole.Arn
+      Events:
+        Weekly: { Type: ScheduleV2, Properties: { ScheduleExpression: 'cron(0 6 ? * MON *)' } }
+
+  # App API role (not shown): textract:AnalyzeExpense on the documents bucket and
+  # bedrock:InvokeModel scoped to !Ref BedrockModelId only.

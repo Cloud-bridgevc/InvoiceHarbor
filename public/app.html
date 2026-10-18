@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InvoiceHarbor — Receivables Workspace</title>
+  <link rel="icon" href="/img/mark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/tokens.css" />
+  <link rel="stylesheet" href="/css/app.css" />
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="/">
+        <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2b827e"/><path d="M8 20c3 2.6 5.3 3.2 8 3.2s5-.6 8-3.2M10 9h12v8H10z" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M13 12.5h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        InvoiceHarbor
+      </a>
+      <nav class="nav" id="nav"></nav>
+      <div class="sidebar-foot">
+        Demo tenant · fictional data<br />
+        <a href="#/demo">Guided demo</a> · <a href="#" id="reset">Reset data</a>
+      </div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <div class="search"><input type="search" id="globalSearch" placeholder="Search invoices, customers, PO numbers…" aria-label="Search" /></div>
+        <div class="spacer"></div>
+        <span class="pill" id="asOf"></span>
+        <span class="pill" title="InvoiceHarbor never sends messages or moves money"><span class="dot"></span><span id="modePill">Demo mode</span></span>
+      </header>
+      <main class="content" id="view" aria-live="polite"></main>
+    </div>
+  </div>
+  <script src="/js/app.js" type="module"></script>
+</body>
+</html>

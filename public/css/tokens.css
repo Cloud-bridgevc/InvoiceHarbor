@@ -1,0 +1,48 @@
+:root {
+  --navy-950: #08111f;
+  --navy-900: #0d1a2e;
+  --navy-850: #112139;
+  --navy-800: #172a47;
+  --navy-700: #22385c;
+  --navy-500: #4a5f80;
+  --ink: #0f1b2d;
+  --ink-2: #44526a;
+  --ink-3: #6b778c;
+  --line: #e3e7ee;
+  --line-2: #eef1f5;
+  --surface: #ffffff;
+  --canvas: #f6f8fb;
+  --teal-700: #1f6f6c;
+  --teal-600: #2b827e;
+  --teal-500: #3f9c97;
+  --teal-300: #8cc7c3;
+  --teal-100: #e3f1f0;
+  --teal-50: #f1f8f8;
+  --green-700: #22744a;
+  --green-600: #2f8f5b;
+  --green-100: #e2f3e9;
+  /* Status colours: always paired with a text label */
+  --st-current-fg: #22744a;   --st-current-bg: #e2f3e9;
+  --st-overdue-fg: #a2402f;   --st-overdue-bg: #f9e7e3;
+  --st-disputed-fg: #94620e;  --st-disputed-bg: #fbf0d9;
+  --st-awaiting-fg: #33589a;  --st-awaiting-bg: #e5edf9;
+  --st-review-fg: #6a4fa3;    --st-review-bg: #efe9fa;
+  --st-paid-fg: #1f6f6c;      --st-paid-bg: #e3f1f0;
+  /* Sequential aging ramp (one hue family, light → dark) */
+  --age-0: #9fd0cc;
+  --age-1: #5fb0aa;
+  --age-2: #2f8b86;
+  --age-3: #1f5f6b;
+  --age-4: #14304f;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --shadow: 0 1px 2px rgba(13, 26, 46, 0.05), 0 4px 16px rgba(13, 26, 46, 0.05);
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--font); color: var(--ink); background: var(--canvas); -webkit-font-smoothing: antialiased; font-size: 14px; line-height: 1.5; }
+.num { font-variant-numeric: tabular-nums; }
+a { color: var(--teal-700); }
+button { font-family: inherit; }
