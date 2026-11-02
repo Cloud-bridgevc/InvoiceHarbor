@@ -175,6 +175,9 @@ pre.doc { background: #fbfbf8; border: 1px solid var(--line); border-radius: 8px
   .g-2 { grid-template-columns: 1fr; }
   .content, .topbar { padding-left: 16px; padding-right: 16px; }
   .card.flush { overflow-x: auto; }
+  .topbar { flex-wrap: wrap; }
+  .grid > * { min-width: 0; }
+  .card:has(table) { overflow-x: auto; }
 }
 @media print {
   .sidebar, .topbar, .no-print { display: none !important; }

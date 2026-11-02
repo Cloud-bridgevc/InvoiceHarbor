@@ -39,3 +39,16 @@ You can also try:
 - **Extraction.** Sample C has an OCR error and a total mismatch, so the record is routed to review.
 
 All companies, people, invoices and amounts are fictional.
+
+## Launch readiness (glow-up)
+
+- Home page: problem section with three sourced statistics, what-we-solve, comparison table, AI section, roadmap and team, with scroll-reveal motion that respects reduced motion (`public/css/glow.css`, `glow.js`).
+- New pages: `/privacy.html`, `/terms.html` (review drafts); footer credits the founders.
+- Ship assets in `public/`: OG image, icons, manifest, sitemap, robots, founders JSON-LD. The server now serves `.png`, `.webmanifest`, `.xml`, `.txt`.
+- Workspace: fixed horizontal overflow on phones (top bar wraps, tables scroll inside their cards).
+
+### Content to confirm before launch
+- **Founders are placeholders:** Chinwe Eze (Founder/CEO) and Babatunde Lawal (Co-founder/CTO) — replace in `public/index.html` (team section, footer) and the JSON-LD.
+- Contact email `hello@invoiceharbor.site` is a placeholder — create the forward or replace it.
+- Statistics (Atradius 2024, Intuit QuickBooks 2025) — re-check figures and links.
+- Privacy notice and terms need operator details and governing law.
