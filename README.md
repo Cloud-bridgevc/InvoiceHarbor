@@ -48,7 +48,7 @@ All companies, people, invoices and amounts are fictional.
 - Workspace: fixed horizontal overflow on phones (top bar wraps, tables scroll inside their cards).
 
 ### Content to confirm before launch
-- **Founders are placeholders:** Chinwe Eze (Founder/CEO) and Babatunde Lawal (Co-founder/CTO) — replace in `public/index.html` (team section, footer) and the JSON-LD.
+- **Founders:** Veronica Taipe (Founder/CEO, confirmed) and Babatunde Lawal (Co-founder/CTO, still a placeholder) — edit in `public/index.html` (team section, footer) and the JSON-LD.
 - Contact email `hello@invoiceharbor.site` is a placeholder — create the forward or replace it.
 - Statistics (Atradius 2024, Intuit QuickBooks 2025) — re-check figures and links.
 - Privacy notice and terms need operator details and governing law.
